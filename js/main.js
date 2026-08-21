@@ -59,6 +59,33 @@
   }
 
   // ---------------------------------------------------------
+  // Chip spark — infinity glyph flash on tap
+  // ---------------------------------------------------------
+  var INFINITY_PATH = "M18.178 8c5.096 0 5.096 8 0 8-5.095 0-6.598-8-12.539-8-4.577 0-4.577 8 0 8 5.941 0 7.444-8 12.539-8z";
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var chips = document.querySelectorAll(".chips li");
+
+  if (chips.length && !reduceMotion) {
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var rect = chip.getBoundingClientRect();
+        var spark = document.createElement("span");
+        spark.className = "chip-spark";
+        spark.style.left = (rect.left + rect.width / 2) + "px";
+        spark.style.top = (rect.top + rect.height / 2) + "px";
+        spark.innerHTML =
+          '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+          '<path pathLength="1" d="' + INFINITY_PATH + '" fill="none" stroke="#B98A3D" stroke-width="1.6"/>' +
+          "</svg>";
+        document.body.appendChild(spark);
+        setTimeout(function () {
+          if (spark.parentNode) spark.parentNode.removeChild(spark);
+        }, 2500);
+      });
+    });
+  }
+
+  // ---------------------------------------------------------
   // Turno modal
   // ---------------------------------------------------------
   var WHATSAPP_NUMBER = "5493517021592";
