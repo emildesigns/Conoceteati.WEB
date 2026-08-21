@@ -326,8 +326,12 @@ svg{ display:block; }
 =========================================================== */
 .quote-band{
   position:relative;
-  background: var(--ink);
-  padding: 7rem 1.6rem;
+  background:
+    linear-gradient(175deg, rgba(15,42,51,.90) 0%, rgba(15,42,51,.80) 45%, rgba(15,42,51,.93) 100%),
+    url('../assets/img/ezequiel-contemplativa.jpg');
+  background-size: cover;
+  background-position: center 38%;
+  padding: 8rem 1.6rem;
   text-align:center;
   overflow:hidden;
 }
