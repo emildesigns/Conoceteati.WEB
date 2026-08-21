@@ -114,6 +114,7 @@ svg{ display:block; }
   max-width: var(--container); margin:0 auto; padding:0 1.6rem;
   height:100%; display:flex; align-items:center; justify-content:space-between;
 }
+.brand{ display:flex; align-items:center; gap: .7rem; }
 .wordmark{
   font-family: var(--font-display);
   font-style: italic;
@@ -122,6 +123,26 @@ svg{ display:block; }
   color: var(--paper);
   transition: color .4s var(--ease);
 }
+
+/* Logo badge — real emblem, framed as a medallion so its own white
+   background always sits on a matching, deliberate frame. */
+.badge-logo{
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper);
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(15,42,51,.22);
+}
+.badge-logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.badge-logo--nav{ width: 42px; height: 42px; }
+.badge-logo--hero{
+  width: 150px; height: 150px;
+  margin: 0 auto 1.7rem;
+  box-shadow: 0 22px 50px -14px rgba(0,0,0,.55), 0 0 0 1px rgba(217,174,95,.3);
+}
+.badge-logo--card{ width: 96px; height: 96px; margin: 0 auto 1.4rem; }
+.badge-logo--footer{ width: 28px; height: 28px; }
 .nav-links{ display:flex; align-items:center; gap: 2rem; }
 .nav-links a{
   font-size: .92rem;
@@ -366,19 +387,6 @@ svg{ display:block; }
   text-align:center;
   box-shadow: 0 40px 70px -30px rgba(15,42,51,.4);
 }
-.card-word{
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.4rem;
-  color: var(--paper);
-}
-.card-tag{
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: .95rem;
-  color: var(--gold-bright);
-  margin-bottom: 1.4rem;
-}
 .card-divider{
   width: 50px; height:1px; background: rgba(217,174,95,.4);
   margin: 0 auto 1.4rem;
@@ -400,6 +408,7 @@ svg{ display:block; }
   border-top: 1px solid rgba(217,174,95,.15);
 }
 .site-footer a:hover{ color: var(--gold-bright); }
+.footer-brand{ display:flex; align-items:center; gap: .7rem; }
 
 /* ===========================================================
    Floating WhatsApp
