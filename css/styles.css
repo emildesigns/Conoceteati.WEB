@@ -298,7 +298,17 @@ svg{ display:block; }
    Enfoque
 =========================================================== */
 .enfoque{ background: var(--teal-soft); padding: 7rem 1.6rem; }
-.enfoque-inner{ max-width: var(--container); margin:0 auto; }
+.enfoque-inner{
+  max-width: var(--container); margin:0 auto;
+  display:grid; grid-template-columns: 1.15fr .85fr; gap: 4rem; align-items:center;
+}
+.enfoque-photo img{
+  width:100%; aspect-ratio: 4/5; object-fit:cover;
+  object-position: center 30%;
+  border-radius: 20px;
+  border: 1px solid rgba(185,138,61,.4);
+  box-shadow: 0 30px 60px -24px rgba(15,42,51,.35);
+}
 .corrientes{
   font-family: var(--font-display);
   font-weight: 500;
@@ -436,8 +446,9 @@ svg{ display:block; }
    Responsive
 =========================================================== */
 @media (max-width: 880px){
-  .bio-inner, .contacto-inner{ grid-template-columns: 1fr; gap: 3rem; }
+  .bio-inner, .contacto-inner, .enfoque-inner{ grid-template-columns: 1fr; gap: 3rem; }
   .bio-photo{ max-width: 280px; margin: 0 auto; }
+  .enfoque-photo img{ max-width: 340px; margin: 0 auto; display:block; }
   .nav-links{
     position:absolute; top: var(--nav-h); left:0; right:0;
     background: var(--ink);
