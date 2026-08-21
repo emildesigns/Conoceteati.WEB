@@ -66,7 +66,7 @@
       <p class="hero-subtitle" data-reveal>un espacio para ser</p>
       <p class="hero-meta" data-reveal>Lic. Ezequiel Cornaglia &nbsp;·&nbsp; Psicólogo &nbsp;·&nbsp; MPO. 11006</p>
       <div class="hero-actions" data-reveal>
-        <a class="btn btn--gold" href="https://wa.me/5493517021592?text=Hola%20Ezequiel%2C%20quiero%20coordinar%20una%20consulta." target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <button type="button" class="btn btn--gold js-open-turno">Reservar un turno</button>
         <a class="btn btn--ghost" href="#enfoque">Conocer el enfoque ↓</a>
       </div>
     </div>
@@ -186,7 +186,7 @@
         <p class="card-name">Ezequiel Cornaglia</p>
         <p class="card-role">Lic. Psicología &nbsp;·&nbsp; MPO. 11006</p>
         <p class="card-alq">Alquimia y transformación</p>
-        <a class="btn btn--gold btn--block" href="https://wa.me/5493517021592?text=Hola%20Ezequiel%2C%20quiero%20coordinar%20una%20consulta." target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <button type="button" class="btn btn--gold btn--block js-open-turno">Reservar un turno</button>
       </div>
     </div>
   </section>
@@ -204,6 +204,88 @@
 <a class="fab-whatsapp" id="fabWhatsapp" href="https://wa.me/5493517021592?text=Hola%20Ezequiel%2C%20quiero%20coordinar%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2 1 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.6.2 1.1.1 1.5-.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
 </a>
+
+<!-- TURNO MODAL -->
+<div class="modal-overlay" id="turnoOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="turnoTitle">
+    <button type="button" class="modal-close" id="turnoClose" aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+
+    <p class="eyebrow" id="turnoTitle">Reservar un turno</p>
+    <h3 class="modal-title">Contame un poco de vos</h3>
+    <p class="modal-sub">Completá tus datos y se los mandás a Ezequiel en un paso, por WhatsApp o por email.</p>
+
+    <form id="turnoForm" novalidate>
+      <div class="field">
+        <label for="f-nombre">Nombre y apellido</label>
+        <input type="text" id="f-nombre" name="nombre" required autocomplete="name">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-genero">Género con el que te identificás</label>
+          <select id="f-genero" name="genero" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>Femenino</option>
+            <option>Masculino</option>
+            <option>No binario</option>
+            <option>Prefiero no decirlo</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-edad">Edad</label>
+          <input type="number" id="f-edad" name="edad" min="1" max="120" required inputmode="numeric">
+        </div>
+      </div>
+
+      <fieldset class="field">
+        <legend>¿Asististe alguna vez a terapia?</legend>
+        <div class="radio-row">
+          <label class="radio-opt"><input type="radio" name="terapiaPrevia" value="Sí" required> Sí</label>
+          <label class="radio-opt"><input type="radio" name="terapiaPrevia" value="No"> No</label>
+        </div>
+      </fieldset>
+
+      <div class="field" id="f-terapiaCualWrap" hidden>
+        <label for="f-terapiaCual">¿A cuál?</label>
+        <input type="text" id="f-terapiaCual" name="terapiaCual" placeholder="Ej: terapia cognitivo-conductual, Gestalt...">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-modalidad">Modalidad preferida</label>
+          <select id="f-modalidad" name="modalidad" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>Presencial</option>
+            <option>Online</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-horario">Franja horaria de preferencia</label>
+          <select id="f-horario" name="horario" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>Mañana</option>
+            <option>Tarde</option>
+            <option>Noche</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-motivo">Motivo de consulta</label>
+        <textarea id="f-motivo" name="motivo" rows="3" placeholder="Contame brevemente qué te gustaría trabajar"></textarea>
+      </div>
+    </form>
+
+    <p class="modal-error" id="turnoError" hidden>Completá los campos obligatorios antes de enviar.</p>
+
+    <div class="modal-actions">
+      <button type="button" class="btn btn--gold btn--block" id="turnoSendWhatsapp">Enviar por WhatsApp</button>
+      <button type="button" class="btn btn--ghost-dark btn--block" id="turnoSendEmail">Enviar por email</button>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>

@@ -57,4 +57,118 @@
       item.classList.add("is-visible");
     });
   }
+
+  // ---------------------------------------------------------
+  // Turno modal
+  // ---------------------------------------------------------
+  var WHATSAPP_NUMBER = "5493517021592";
+  var CONTACT_EMAIL = "Ezecornaglia.0@gmail.com";
+
+  var overlay = document.getElementById("turnoOverlay");
+  var modalCloseBtn = document.getElementById("turnoClose");
+  var form = document.getElementById("turnoForm");
+  var terapiaCualWrap = document.getElementById("f-terapiaCualWrap");
+  var terapiaCualInput = document.getElementById("f-terapiaCual");
+  var errorEl = document.getElementById("turnoError");
+  var sendWhatsappBtn = document.getElementById("turnoSendWhatsapp");
+  var sendEmailBtn = document.getElementById("turnoSendEmail");
+  var openTriggers = document.querySelectorAll(".js-open-turno");
+
+  if (overlay && form) {
+    var lastFocused = null;
+
+    function openModal() {
+      lastFocused = document.activeElement;
+      overlay.hidden = false;
+      void overlay.offsetWidth; // force reflow so the opacity transition runs
+      overlay.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      errorEl.hidden = true;
+      var firstField = document.getElementById("f-nombre");
+      if (firstField) firstField.focus();
+    }
+
+    function closeModal() {
+      overlay.classList.remove("is-open");
+      document.body.style.overflow = "";
+      setTimeout(function () {
+        overlay.hidden = true;
+      }, 250);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    openTriggers.forEach(function (btn) {
+      btn.addEventListener("click", openModal);
+    });
+
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("is-open")) closeModal();
+    });
+
+    form.querySelectorAll('input[name="terapiaPrevia"]').forEach(function (radio) {
+      radio.addEventListener("change", function () {
+        var showCual = radio.value === "Sí" && radio.checked;
+        terapiaCualWrap.hidden = !showCual;
+        if (!showCual) terapiaCualInput.value = "";
+      });
+    });
+
+    function buildMessage() {
+      var data = new FormData(form);
+      var nombre = (data.get("nombre") || "").trim();
+      var genero = data.get("genero") || "";
+      var edad = data.get("edad") || "";
+      var terapiaPrevia = data.get("terapiaPrevia") || "";
+      var terapiaCual = (data.get("terapiaCual") || "").trim();
+      var modalidad = data.get("modalidad") || "";
+      var horario = data.get("horario") || "";
+      var motivo = (data.get("motivo") || "").trim();
+
+      var terapiaLine = terapiaPrevia;
+      if (terapiaPrevia === "Sí" && terapiaCual) {
+        terapiaLine += " (" + terapiaCual + ")";
+      }
+
+      var lines = [
+        "Hola Ezequiel! Quiero coordinar un turno.",
+        "",
+        "Nombre y apellido: " + nombre,
+        "Género: " + genero,
+        "Edad: " + edad,
+        "¿Asistió a terapia antes?: " + terapiaLine,
+        "Modalidad preferida: " + modalidad,
+        "Franja horaria: " + horario,
+        "Motivo de consulta: " + (motivo || "No especificado")
+      ];
+      return lines.join("\n");
+    }
+
+    function validate() {
+      var valid = form.checkValidity();
+      errorEl.hidden = valid;
+      if (!valid) form.reportValidity();
+      return valid;
+    }
+
+    sendWhatsappBtn.addEventListener("click", function () {
+      if (!validate()) return;
+      var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(buildMessage());
+      window.open(url, "_blank", "noopener");
+      closeModal();
+    });
+
+    sendEmailBtn.addEventListener("click", function () {
+      if (!validate()) return;
+      var subject = "Turno - " + (form.querySelector("#f-nombre").value.trim() || "Nueva consulta");
+      var url = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(buildMessage());
+      window.location.href = url;
+      closeModal();
+    });
+  }
 })();
