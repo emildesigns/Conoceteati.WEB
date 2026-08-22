@@ -575,20 +575,19 @@ svg{ display:block; }
    Responsive
 =========================================================== */
 @media (max-width: 880px){
-  .bio-inner, .contacto-inner, .enfoque-inner{ grid-template-columns: 1fr; gap: 3rem; }
+  .bio-inner, .contacto-inner{ grid-template-columns: 1fr; gap: 3rem; }
   .bio-photo{ max-width: 280px; margin: 0 auto; }
-  .enfoque-photo img{ max-width: 340px; margin: 0 auto; display:block; }
+  .enfoque-inner{ grid-template-columns: 1fr 130px; gap: 1.4rem; align-items:start; }
+  .enfoque-photo img{ border-radius: 14px; }
   .nav-links{
+    display: none;
     position:absolute; top: var(--nav-h); left:0; right:0;
     background: var(--ink);
     flex-direction:column; align-items:flex-start;
     padding: 1.5rem 1.6rem 2rem;
     gap: 1.2rem;
-    transform-origin: top;
-    max-height:0; overflow:hidden;
-    transition: max-height .35s var(--ease);
   }
-  .nav-links.is-open{ max-height: 320px; }
+  .nav-links.is-open{ display:flex; }
   .nav-links a{ color: var(--paper-70); }
   .nav-cta{ margin-top: .5rem; }
   .nav-toggle{ display:flex; }
@@ -599,4 +598,5 @@ svg{ display:block; }
   .contacto-card{ padding: 2.2rem 1.6rem; }
   .field-row{ flex-direction:column; gap: 1.2rem; }
   .modal{ padding: 2rem 1.4rem; }
+  .enfoque-inner{ grid-template-columns: 1fr 100px; gap: 1rem; }
 }
