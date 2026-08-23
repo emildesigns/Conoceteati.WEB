@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://conoceteati.com.ar/sitemap.xml
