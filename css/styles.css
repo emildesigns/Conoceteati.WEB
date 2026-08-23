@@ -311,7 +311,7 @@ svg{ display:block; }
 .enfoque{ background: var(--teal-soft); padding: 7rem 1.6rem; }
 .enfoque-inner{
   max-width: var(--container); margin:0 auto;
-  display:grid; grid-template-columns: 1fr 372px; gap: 4rem; align-items:center;
+  display:grid; grid-template-columns: 1fr 310px; gap: 4rem; align-items:center;
 }
 .enfoque-photo img{
   width:100%; aspect-ratio: 4/5; object-fit:cover;
