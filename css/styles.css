@@ -311,7 +311,7 @@ svg{ display:block; }
 .enfoque{ background: var(--teal-soft); padding: 7rem 1.6rem; }
 .enfoque-inner{
   max-width: var(--container); margin:0 auto;
-  display:grid; grid-template-columns: 1fr 310px; gap: 4rem; align-items:center;
+  display:grid; grid-template-columns: 1fr 372px; gap: 4rem; align-items:center;
 }
 .enfoque-photo img{
   width:100%; aspect-ratio: 4/5; object-fit:cover;
@@ -579,7 +579,7 @@ svg{ display:block; }
 @media (max-width: 880px){
   .bio-inner, .contacto-inner{ grid-template-columns: 1fr; gap: 3rem; }
   .bio-photo{ max-width: 280px; margin: 0 auto; }
-  .enfoque-inner{ grid-template-columns: 1fr 130px; gap: 1.4rem; align-items:start; }
+  .enfoque-inner{ grid-template-columns: 1fr 156px; gap: 1.4rem; align-items:start; }
   .enfoque-photo img{ border-radius: 14px; }
   .nav-links{
     display: none;
@@ -600,5 +600,5 @@ svg{ display:block; }
   .contacto-card{ padding: 2.2rem 1.6rem; }
   .field-row{ flex-direction:column; gap: 1.2rem; }
   .modal{ padding: 2rem 1.4rem; }
-  .enfoque-inner{ grid-template-columns: 1fr 100px; gap: 1rem; }
+  .enfoque-inner{ grid-template-columns: 1fr 120px; gap: 1rem; }
 }
