@@ -579,7 +579,8 @@ svg{ display:block; }
 @media (max-width: 880px){
   .bio-inner, .contacto-inner{ grid-template-columns: 1fr; gap: 3rem; }
   .bio-photo{ max-width: 280px; margin: 0 auto; }
-  .enfoque-inner{ grid-template-columns: 1fr 156px; gap: 1.4rem; align-items:start; }
+  .enfoque-inner{ grid-template-columns: 1fr; gap: 2rem; }
+  .enfoque-photo{ max-width: 240px; margin: 0 auto; }
   .enfoque-photo img{ border-radius: 14px; }
   .nav-links{
     display: none;
@@ -600,5 +601,5 @@ svg{ display:block; }
   .contacto-card{ padding: 2.2rem 1.6rem; }
   .field-row{ flex-direction:column; gap: 1.2rem; }
   .modal{ padding: 2rem 1.4rem; }
-  .enfoque-inner{ grid-template-columns: 1fr 120px; gap: 1rem; }
+  .enfoque-photo{ max-width: 200px; }
 }
